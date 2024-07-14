@@ -7,18 +7,38 @@ const { extrudeLinear, extrudeRectangular, extrudeRotate } = require('@jscad/mod
 
 // A function declaration that returns geometry
 const main = () => {
+  const a = 0.0032;
+  const angle = 20;
+  const count = 36;
   return [
-    hullChain(
-      ...[...Array(36)].map((e,i) => {
-        return rotate([0,0,Math.PI / 180 * i * 10],
-          translate([0,2,i * 0.03],
-            rotate([Math.PI / 180 * 90,0,0],
-              cylinderElliptic({height: 0.6, startRadius: [0.1, 0.1], endRadius: [0.5, 0.5]}),
-            ),
-          )
-        );
-      }),
-    )
+    subtract(
+      union(
+        hullChain(
+          ...[...Array(36)].map((e,i) => {
+            return rotate([0,0,Math.PI / 180 * i * angle],
+              translate([0,-2.2,i * a * angle],
+                rotate([Math.PI / 180 * 90,0,0],
+                  cylinderElliptic({height: 0.6, startRadius: [0.1, 0.1], endRadius: [0.5, 0.5]}),
+                ),
+              )
+            );
+          }),
+        ),
+        hullChain(
+          ...[...Array(count)].map((e,i) => {
+            return rotate([0,0,Math.PI / 180 * i * angle],
+              translate([0,2,i * a * angle],
+                rotate([Math.PI / 180 * 90,0,0],
+                  cylinderElliptic({height: 0.6, startRadius: [0.1, 0.1], endRadius: [0.5, 0.5]}),
+                ),
+              )
+            );
+          }),
+        ),
+        cylinder({radius: 1.8, height: 10, center: [0, 0, 4], segments: 64}),
+      ), // union
+      cuboid({size: [10,10,10], center:[5,0,0]}),
+    ),
   ];
 }
 
