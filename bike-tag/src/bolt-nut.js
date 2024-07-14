@@ -36,6 +36,10 @@ const main = () => {
           }),
         ),
         cylinder({radius: 1.8, height: 10, center: [0, 0, 4], segments: 64}),
+        subtract(
+          cylinder({radius:3,height: 10,center:[0,0,4],segments:64}),
+          cylinder({radius:2.4,height: 10,center:[0,0,4],segments:64}),
+        ),
       ), // union
       cuboid({size: [10,10,10], center:[5,0,0]}),
     ),
