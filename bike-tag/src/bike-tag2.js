@@ -17,19 +17,14 @@ const main = () => {
           [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
         ] }))))),
       
-        translate([80,24,0],rotate([0,Math.PI / 180 * 90,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
+        translate([82,24,0],extrudeRotate({segments: 64}, translate([0,0,0],polygon({ points: [ 
           [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
-      
-        translate([82,23,0],rotate([Math.PI / 180 * 90,0,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
+        ] })))),
+        
+        translate([82,-24,0],extrudeRotate({segments: 64}, translate([0,0,0],polygon({ points: [ 
           [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
-        translate([82,-21,0],rotate([Math.PI / 180 * 90,0,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
-          [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
-        translate([80,-24,0],rotate([0,Math.PI / 180 * 90,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
-          [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
+        ] })))),
+        
         translate([0.5,-24,0],rotate([0,Math.PI / 180 * 90,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
           [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
         ] }))))),
