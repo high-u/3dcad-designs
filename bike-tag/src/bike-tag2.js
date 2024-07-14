@@ -8,40 +8,42 @@ const { extrudeLinear, extrudeRectangular, extrudeRotate } = require('@jscad/mod
 // A function declaration that returns geometry
 const main = () => {
   return [
-    translate([16,18,0], extrudeLinear({height: 8}, polygon({points: [[6,6],[-6,6],[6,-6]]}))),
-    translate([16,-18,0], extrudeLinear({height: 8}, polygon({points: [[6,6],[-6,-6],[6,-6]]}))),
+    translate([0,0,4],
+      union(
+        translate([16,18,-4], extrudeLinear({height: 8}, polygon({points: [[6,6],[-6,6],[6,-6]]}))),
+        translate([16,-18,-4], extrudeLinear({height: 8}, polygon({points: [[6,6],[-6,-6],[6,-6]]}))),
     
-    translate([0,0,4],union(
-      extrudeRotate({segments: 64}, translate([24,0,0],polygon({ points: [ 
-        [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-      ] }))),
-      hullChain(
-        translate([0.5,24,0],rotate([0,Math.PI / 180 * 90,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
+        extrudeRotate({segments: 64}, translate([24,0,0],polygon({ points: [ 
           [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
+        ] }))),
+        hullChain(
+          translate([0.5,24,0],rotate([0,Math.PI / 180 * 90,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
+            [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
+          ] }))))),
       
-        translate([82,24,0],extrudeRotate({segments: 64}, translate([0,0,0],polygon({ points: [ 
-          [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] })))),
+          translate([82,24,0],extrudeRotate({segments: 64}, translate([0,0,0],polygon({ points: [ 
+            [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
+          ] })))),
         
-        translate([82,-24,0],extrudeRotate({segments: 64}, translate([0,0,0],polygon({ points: [ 
-          [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] })))),
+          translate([82,-24,0],extrudeRotate({segments: 64}, translate([0,0,0],polygon({ points: [ 
+            [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
+          ] })))),
         
-        translate([0.5,-24,0],rotate([0,Math.PI / 180 * 90,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
-          [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
+          translate([0.5,-24,0],rotate([0,Math.PI / 180 * 90,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
+            [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
+          ] }))))),
+        ),
+        translate([52,0,-2],cuboid({size: [56,50,4]})),
+        hull(
+          translate([24,24,0],rotate([Math.PI / 180 * 90,0,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
+            [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
+          ] }))))),
+          translate([24,-24,0],rotate([Math.PI / 180 * 90,0,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
+            [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
+          ] }))))),
+        ),
       ),
-      translate([52,0,-2],cuboid({size: [56,50,4]})),
-      hull(
-        translate([24,24,0],rotate([Math.PI / 180 * 90,0,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
-          [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
-        translate([24,-24,0],rotate([Math.PI / 180 * 90,0,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
-          [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
-        ] }))))),
-      ),
-    ))
+    )
   ];
 }
 
