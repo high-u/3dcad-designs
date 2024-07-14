@@ -42,7 +42,8 @@ const main = () => {
         ),
       ), // union
       cuboid({size: [10,10,10], center:[5,0,0]}),
-    ),
+      
+    ), // subtract
   ];
 }
 
