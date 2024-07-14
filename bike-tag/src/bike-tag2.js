@@ -8,6 +8,9 @@ const { extrudeLinear, extrudeRectangular, extrudeRotate } = require('@jscad/mod
 // A function declaration that returns geometry
 const main = () => {
   return [
+    translate([16,18,0], extrudeLinear({height: 8}, polygon({points: [[6,6],[-6,6],[6,-6]]}))),
+    translate([16,-18,0], extrudeLinear({height: 8}, polygon({points: [[6,6],[-6,-6],[6,-6]]}))),
+    
     translate([0,0,4],union(
       extrudeRotate({segments: 64}, translate([24,0,0],polygon({ points: [ 
         [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
@@ -29,7 +32,7 @@ const main = () => {
           [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
         ] }))))),
       ),
-      translate([50,0,0],cuboid({size: [56,50,2]})),
+      translate([52,0,-2],cuboid({size: [56,50,4]})),
       hull(
         translate([24,24,0],rotate([Math.PI / 180 * 90,0,0],extrudeLinear({height: 1}, translate([0,0,0],polygon({ points: [ 
           [-2,4],[-4,2],[-4,-2],[-2,-4],[2,-4],[4,-2],[4,2],[2,4],
